@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #usage: python cat.py filename
 from __future__ import print_function
 import sys
