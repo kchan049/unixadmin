@@ -35,4 +35,22 @@ renice -n 5 -u kchan049
 #changes nice value of all processes that belong to the user kchan049
 #important to unix admins to change process priority
 
+#fuser
+#fuser finds which process is using a file, directory, or socket. It also gives additional information on user owning processes and much more.
+fuser -v .
+#gives information about the process in verbose mode such as user, pid, access, and command
+#important for unix admin because it shows how to view processes using a directory
+
+#rsync
+#rsync is a great tool for backing up and restoring files
+rsync -arv kchan049@bolt.cs.ucr.edu:/ ./
+#copied files from remote server to current directory while preserving all the permissions 
+#important for unix admins in case anything goes wrong, they can backup and restore everything
+
+#grep 
+#grep will process text line by line and print lines matching a specific pattern
+ps aux | grep kchan049 
+#searches all processes with the keyword kchan049
+#important for unix admins to look up pids and kill processes by pid number
+
 
