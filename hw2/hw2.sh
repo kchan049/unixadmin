@@ -53,4 +53,8 @@ ps aux | grep kchan049
 #searches all processes with the keyword kchan049
 #important for unix admins to look up pids and kill processes by pid number
 
-
+#time
+#time identifies the time taken by a command
+time ls
+#time ls gives you the real time, user time, and system time of the command ls.
+#it can help a unix admin make a more time efficient script
