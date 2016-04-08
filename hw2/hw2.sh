@@ -49,7 +49,7 @@ rsync -arv kchan049@bolt.cs.ucr.edu:/ ./
 
 #grep 
 #grep will process text line by line and print lines matching a specific pattern
-ps aux | grep kchan049 
+ps -aux | grep kchan049 
 #searches all processes with the keyword kchan049
 #important for unix admins to look up pids and kill processes by pid number
 
