@@ -58,3 +58,63 @@ ps aux | grep kchan049
 time ls
 #time ls gives you the real time, user time, and system time of the command ls.
 #it can help a unix admin make a more time efficient script
+
+#host
+#host does a variety of things like performing dns name lookups, finding ip of a host, listing and validating DNS resource records, verifying internet connectivity and isp dns servers, verifying spam and blacklist record, and verifying and troubleshooting dns server issues.
+host google.com
+#this command finds the addresses of the domain google.com
+#this command helps unix admins troubleshoot network problems and much more
+
+#ssh
+#ssh logs you into a remote machine and executes command on a remote machine. 
+ssh kchan049@bolt.cs.ucr.edu
+#this command logs you into the bolt remote machine under the user name kchan049
+#this is probably one of the most important unix admin commands because unix admins are always traveling from place to place. ssh will save you a lot of time and traveling. 
+
+#ldd
+#ldd is a tool that helps a user find the dependencies for a shared library or an executable.
+ldd /bin/ls
+#this example finds the dependency of ls
+#as a system admin, it can help figure out what library a given program needs to run
+
+#stat
+#stat displays detailed status of a file or file system
+stat -f /dev/sda
+#this command displays the status of first hard drive
+#as a unix admin, you can see how many blocks are free and other important information.
+
+#lsof
+#lsof is used to list information about files that are opened by certain processes. 
+lsof -u kchan049
+#this command lists files opened by the specific user kchan049
+#as a unix admin, this command is super important in server administration.
+
+#strace
+#strace monitors the system calls and signals of a program.
+strace ls
+#this example shows the trace of an execution of ls
+#this can help a system admin debug any problems in a specific program
+
+#mount
+#mount mounts a storage device or filesystem to a particular location in the directory tree.
+mount -l -t ext4
+#this example lists specific type of filesystem mounted
+#unix admins could use this command to mount temporary file systems such as cd rom drive or floppy disk drive
+
+#uname
+#uname provides information about your operating system
+uname -s
+#this command tells you the kernel name
+#unix admins can use this command to find information about the operating system and assists people who need help with that specific os
+
+#ps
+#ps helps find the current processes running on the system.
+ps -aux
+#this example gives you details about all the processes
+#for a unix admin, they can use ps with kill-9 to immediately kill a running process.
+
+#wget
+#wget is a command that downloads files over a network
+wget google.com
+#this command downloads the html page of google.com
+#this is efficient for unix admins because with just one command they can save all the clicking and open installers when this command does this for them
