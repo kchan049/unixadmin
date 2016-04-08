@@ -7,8 +7,8 @@ dd if=file1.txt of=file2.txt conv=ucase
 
 #pkill
 #pkill sends a signal to the process based on its name
-pkill -9 -f "commandname"
-#pkill can the process by specifying command name
+pkill -9 -f "vim hw2.sh"
+#pkill kills the process "vim hw2.sh" 
 #it is important for a unix admin when they want to kill a process based on its name instead of killing with pid
 
 #find 
@@ -118,3 +118,4 @@ ps -aux
 wget google.com
 #this command downloads the html page of google.com
 #this is efficient for unix admins because with just one command they can save all the clicking and open installers when this command does this for them
+
