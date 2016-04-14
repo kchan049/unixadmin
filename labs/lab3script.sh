@@ -7,7 +7,7 @@ read -p "Hit enter to continue."
 find /var -cmin -20
 read -p "Hit enter to continue."
 #question 3
-find /var -type f -size 0
+find /dev -type f -size 0
 read -p "Hit enter to continue."
 #question 4
 find /var -not -type f -not -type d -ls
