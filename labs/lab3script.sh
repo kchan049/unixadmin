@@ -10,7 +10,7 @@ read -p "Hit enter to continue."
 find /var -type f -size 0
 read -p "Hit enter to continue."
 #question 4
-find /dev -not -type f -not -type d -ls
+find /dev -not -type f -and -not -type d -ls
 read -p "Hit enter to continue."
 #question 5
 find /home -type d -not -user root -exec chmod 711 {} \;
