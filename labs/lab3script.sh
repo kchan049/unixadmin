@@ -7,10 +7,10 @@ read -p "Hit enter to continue."
 find /var -cmin -20
 read -p "Hit enter to continue."
 #question 3
-find /dev -type f -size 0
+find /var -type f -size 0
 read -p "Hit enter to continue."
 #question 4
-find /var -not -type f -not -type d -ls
+find /dev -not -type f -not -type d -ls
 read -p "Hit enter to continue."
 #question 5
 find /home -type d -not -user root -exec chmod 711 {} \;
@@ -19,7 +19,7 @@ read -p "Hit enter to continue."
 find /home -type f -not -user root -exec chmod 755 {} \;
 read -p "Hit enter to continue."
 #question 7
-find /etc -mtime -5
+find /etc -ctime -5
 
 
 
