@@ -2,7 +2,7 @@
 use warnings;
 use List::Util 'sum';
 
-my $logfile = "maillog";
+my $logfile = "log2";
 open ($log, "<", $logfile) or die("Cannot open file " . $logfile);
 
 my %known;
