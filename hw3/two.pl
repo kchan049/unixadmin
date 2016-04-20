@@ -8,7 +8,8 @@ open ($log, "<", $logfile) or die("Cannot open file " . $logfile);
 my %known;
 my %unknown;
 while (my $line = <$log>){
-  if ($line =~ /connect from (.*?)\[(\S+\.\S+\.\S+\.\S+)\]/){
+  if ($line =~ /disconnect from (.*?)\[(\S+\.\S+\.\S+\.\S+)\]/)
+  {
     my $status = $1;
 	my $ip = $2;
 	if (index($status ,"unknown") != -1){
