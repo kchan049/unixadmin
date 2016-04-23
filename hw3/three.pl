@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-use warnings;
 use List::Util 'sum';
 
 my $logfile = $ARGV[0];
@@ -10,6 +9,8 @@ my %from;
 my %to;
 while(my $line = <$LOG>)
 {
+	if($line !~ /reject/)
+	{
 	if($line =~ /from\=\<(\S+)\>/)
 	{
 		my $email = $1;
@@ -33,6 +34,7 @@ while(my $line = <$LOG>)
 			{
 				$to{$email1} = $to{$email1} + 1;
 			}
+	}
 	}
 
 }
