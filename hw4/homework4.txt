@@ -1,0 +1,13 @@
+1. Jan 15 level 0
+   Jan 18 level 1
+   Jan 19 level 2
+   Jan 20 level 3
+   Jan 21 level 4
+
+   The good thing about incremental backups is that fewers files are backed up every day so it doesn't take much time to backup. The bad thing about it depends on the previous backup. If one of the incremental backups is damaged, a full backup would be neccessary. 
+
+2.a. Class A
+  b. CIDR: 10.0.0.0/8
+	 Base 10: 255.0.0.0
+  c. 1. Default Gateway IP Address: 10.3.12.1
+     2. Broadcast Address: 10.3.12.255
