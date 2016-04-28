@@ -9,5 +9,5 @@
 2.a. Class A
   b. CIDR: 10.0.0.0/8
 	 Base 10: 255.0.0.0
-  c. 1. Default Gateway IP Address: 10.3.12.1
-     2. Broadcast Address: 10.3.12.255
+  c. 1. Default Gateway IP Address: 10.0.0.1
+     2. Broadcast Address: 10.255.255.255
