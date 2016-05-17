@@ -1,0 +1,80 @@
+#!/bin/bash
+
+if yum list installed httpd &>/dev/null 
+then
+    echo "httpd installed continuing"
+else
+	echo "httpd not installed"	
+	yum install httpd &>/dev/null
+fi
+
+VAR=$(hostname -s)
+sed -i -e "s/#ServerName www.example.com:80/ServerName $VAR:80/" /etc/httpd/conf/httpd.conf
+
+sed -i -e "s/Options Indexes FollowSymLinks/Options Indexes/g" /etc/httpd/conf/httpd.conf
+
+service httpd start &>/dev/null
+if [ "$?" -eq 0 ]
+then
+	echo "service httpd starts with no errors"
+	service httpd stop &>/dev/null
+else
+	echo "service httpd starts with errors" >&2
+	exit 5
+fi
+
+
+if yum list installed php &>/dev/null 
+then
+    echo "php installed continuing"
+	if [ -f "/etc/httpd/conf.d/php.conf" ]
+	then
+		echo "php.conf exists"
+	else
+		echo "php.conf doesn't exists" >&2
+		exit 4
+	fi
+else
+	echo "php not installed"	
+	yum install php &>/dev/null
+	if [ -f "/etc/httpd/conf.d/php.conf" ]
+	then
+		echo "php.conf exists"
+	else
+		echo "php.conf doesn't exists" >&2
+		exit 4
+	fi
+
+fi
+
+
+if [ yum list installed mysql-server &>/dev/null ] && [ yum list installed php-mysql &>/dev/null  ] 
+then
+    echo "mysql-server and php-mysql installed continuing"
+else
+	echo "mysql-server and php-mysql not installed"	
+	yum install mysql-server &>/dev/null
+	yum install php-mysql &>/dev/null
+fi
+
+service httpd restart &>/dev/null
+
+chkconfig --add httpd &>/dev/null
+chkconfig --add mysqld &>/dev/null
+
+chkconfig --list httpd >&1
+chkconfig --list mysqld >&1
+
+wget -O mysql.txt http://boxes.cs.ucr.edu/cs183/mysql.txt
+mysql < mysql.txt
+wget -O gradebook.php http://boxes.cs.ucr.edu/cs183/gradebook.php
+mv gradebook.php /var/www/html
+
+diff <(curl http://boxes.cs.ucr.edu/cs183/gradebook.txt) <(curl http://127.0.0.1/gradebook.php)
+
+if [ "$?" -eq 0 ]
+then
+	exit 0
+else
+	exit 8
+fi
