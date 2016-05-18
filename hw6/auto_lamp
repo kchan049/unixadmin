@@ -5,7 +5,7 @@ then
     echo "httpd installed continuing"
 else
 	echo "httpd not installed"	
-	yum install httpd &>/dev/null
+	yum -y install httpd &> /dev/null
 fi
 
 VAR=$(hostname -s)
@@ -36,7 +36,7 @@ then
 	fi
 else
 	echo "php not installed"	
-	yum install php &>/dev/null
+	yum -y install php &>/dev/null
 	if [ -f "/etc/httpd/conf.d/php.conf" ]
 	then
 		echo "php.conf exists"
@@ -53,24 +53,30 @@ then
     echo "mysql-server and php-mysql installed continuing"
 else
 	echo "mysql-server and php-mysql not installed"	
-	yum install mysql-server &>/dev/null
-	yum install php-mysql &>/dev/null
+	yum -y install mysql-server &>/dev/null
+	yum -y install php-mysql &>/dev/null
 fi
 
 service httpd restart &>/dev/null
 
 chkconfig --add httpd &>/dev/null
 chkconfig --add mysqld &>/dev/null
-
+chkconfig httpd on
+chkconfig mysqld on
 chkconfig --list httpd >&1
 chkconfig --list mysqld >&1
 
-wget -O mysql.txt http://boxes.cs.ucr.edu/cs183/mysql.txt
-mysql < mysql.txt
-wget -O gradebook.php http://boxes.cs.ucr.edu/cs183/gradebook.php
-mv gradebook.php /var/www/html
+wget http://boxes.cs.ucr.edu/cs183/mysql.txt
+wget http://boxes.cs.ucr.edu/cs183/gradebook.txt
+mv gradebook.txt gradebook.php
+mv gradebook.php /var/www/html/
 
-diff <(curl http://boxes.cs.ucr.edu/cs183/gradebook.txt) <(curl http://127.0.0.1/gradebook.php)
+/etc/init.d/mysqld start
+mysql < mysql.txt
+
+#diff <(curl http://boxes.cs.ucr.edu/cs183/gradebook.txt) <(curl http://127.0.0.1/gradebook.php)
+
+#wget http://127.0.0.1/gradebook.php
 
 if [ "$?" -eq 0 ]
 then
