@@ -65,7 +65,6 @@ chkconfig httpd on &>/dev/null
 chkconfig mysqld on &>/dev/null
 chkconfig --list httpd >&1
 chkconfig --list mysqld >&1
-
 yum -y install wget &>/dev/null
 wget http://boxes.cs.ucr.edu/cs183/mysql.txt &>/dev/null
 wget http://boxes.cs.ucr.edu/cs183/gradebook.txt &>/dev/null
@@ -79,18 +78,19 @@ mysql < mysql.txt &>/dev/null
 
 wget http://127.0.0.1/gradebook.php &>/dev/null
 
-echo "<h1>183 Gradebook</h1>" >> out.txt
-echo "<pre>" >> out.txt
+echo "<h1>183 Gradebook</h1> " >> out.txt
+echo "<pre> " >> out.txt
 echo "    Claire: 92" >> out.txt
 echo "       Bob: 90" >> out.txt
 echo "     Alice: 80" >> out.txt
 echo "     David: 60" >> out.txt
-echo "             " >> out.txt
-echo "</pre>" >> out.txt
+echo " " >> out.txt
+echo "</pre> " >> out.txt
 diff gradebook.php out.txt &>/dev/null
 if [ "$?" -eq 0 ]
 then
 	exit 0
 else
+	echo "different comparisons" >&2
 	exit 8
 fi
