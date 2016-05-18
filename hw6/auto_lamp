@@ -61,23 +61,33 @@ service httpd restart &>/dev/null
 
 chkconfig --add httpd &>/dev/null
 chkconfig --add mysqld &>/dev/null
-chkconfig httpd on
-chkconfig mysqld on
+chkconfig httpd on &>/dev/null
+chkconfig mysqld on &>/dev/null
 chkconfig --list httpd >&1
 chkconfig --list mysqld >&1
 
-wget http://boxes.cs.ucr.edu/cs183/mysql.txt
-wget http://boxes.cs.ucr.edu/cs183/gradebook.txt
+yum -y install wget &>/dev/null
+wget http://boxes.cs.ucr.edu/cs183/mysql.txt &>/dev/null
+wget http://boxes.cs.ucr.edu/cs183/gradebook.txt &>/dev/null
 mv gradebook.txt gradebook.php
 mv gradebook.php /var/www/html/
 
-/etc/init.d/mysqld start
-mysql < mysql.txt
+/etc/init.d/mysqld start &>/dev/null
+mysql < mysql.txt &>/dev/null 
 
 #diff <(curl http://boxes.cs.ucr.edu/cs183/gradebook.txt) <(curl http://127.0.0.1/gradebook.php)
 
-#wget http://127.0.0.1/gradebook.php
+wget http://127.0.0.1/gradebook.php &>/dev/null
 
+echo "<h1>183 Gradebook</h1>" >> out.txt
+echo "<pre>" >> out.txt
+echo "    Claire: 92" >> out.txt
+echo "       Bob: 90" >> out.txt
+echo "     Alice: 80" >> out.txt
+echo "     David: 60" >> out.txt
+echo "             " >> out.txt
+echo "</pre>" >> out.txt
+diff gradebook.php out.txt &>/dev/null
 if [ "$?" -eq 0 ]
 then
 	exit 0
